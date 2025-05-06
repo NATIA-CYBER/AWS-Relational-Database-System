@@ -1,18 +1,26 @@
 from fastapi import FastAPI, Depends, HTTPException
+from fastapi.responses import RedirectResponse
 import logging
+import json
+from datetime import datetime
+from typing import Dict, Any
+
+from sqlalchemy import Column, Integer, String, Float, select, update, insert, Index, DateTime
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import Session
+import boto3
+
+from ..settings import SessionLocal, settings
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-from typing import Dict, Any
-from sqlalchemy import select, update, insert
-from sqlalchemy.orm import Session, declarative_base
-from sqlalchemy import Column, Integer, String, Float, DateTime, Index
-from ..settings import SessionLocal, settings
-import boto3
-import json
-from datetime import datetime
 
-app = FastAPI()
+app = FastAPI(title="Aircraft Data Processing API")
+
+@app.get("/")
+def root():
+    # Redirect root to the Swagger UI documentation
+    return RedirectResponse(url="/docs")
 Base = declarative_base()
 
 class AircraftStats(Base):
