@@ -1,0 +1,10 @@
+-- Create aircraft_stats table
+CREATE TABLE IF NOT EXISTS aircraft_stats (
+    id SERIAL PRIMARY KEY,
+    icao VARCHAR(10) UNIQUE NOT NULL,
+    total_flights INTEGER DEFAULT 0,
+    avg_altitude FLOAT DEFAULT 0,
+    avg_speed FLOAT DEFAULT 0,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);

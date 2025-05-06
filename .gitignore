@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Virtual environments
+venv/
+env/
+
+# Environment variables
+.env*
+!.env.example
+
+# AWS and testing files
+.coverage
+check_aws.py
+check_bucket.py
+debug_aws.py
+list_buckets.py
+verify_creds.py
+update_env.py
+test_s3.py
+aws-architecture.puml
+test_flights.json
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# OS
+.DS_Store

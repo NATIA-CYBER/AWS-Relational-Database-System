@@ -1,0 +1,43 @@
+@startuml AWS Architecture
+
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v15.0/dist
+!include AWSPuml/AWSCommon.puml
+!include AWSPuml/Compute/EC2.puml
+!include AWSPuml/Database/RDS.puml
+!include AWSPuml/Storage/SimpleStorageService.puml
+!include AWSPuml/SecurityIdentityCompliance/SecurityGroup.puml
+
+skinparam componentStyle uml2
+
+rectangle "AWS Cloud" {
+    component "EC2 Security Group" as ec2sg {
+        EC2(ec2, "EC2 Instance", "FastAPI Application") 
+        note right of ec2
+            Inbound:
+            - Port 8000 (API)
+            Outbound:
+            - All to RDS SG
+            - All to S3
+        end note
+    }
+
+    component "RDS Security Group" as rdssg {
+        RDS(rds, "RDS PostgreSQL", "Aircraft Database")
+        note right of rds
+            Inbound:
+            - Port 5432 from EC2 SG
+            No public access
+            No public IP
+        end note
+    }
+
+    SimpleStorageService(s3, "S3 Bucket", "Aircraft Data")
+}
+
+actor "User" as user
+
+user --> ec2: "HTTP/HTTPS"
+ec2 --> rds: "PostgreSQL\nPort 5432"
+ec2 <--> s3: "Read aircraft\ndata"
+
+@enduml
