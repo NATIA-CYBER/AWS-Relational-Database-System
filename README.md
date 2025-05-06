@@ -134,7 +134,9 @@ cd aws_assignment
 docker compose up -d
 ```
 
-4. The API will be available at `http://localhost:8000`
+4. The API will be available at `http://localhost:8001`
+   - Interactive API documentation: `http://localhost:8001/docs`
+   - Alternative API documentation: `http://localhost:8001/redoc`
 
 ## API Endpoints
 
