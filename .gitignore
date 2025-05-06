@@ -1,14 +1,10 @@
-# Byte-compiled / optimized / DLL files
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
+.pytest_cache/
 
-# Distribution / packaging
-dist/
-build/
-*.egg-info/
-
-# Virtual environments
+# Virtual Environment
 venv/
 env/
 
@@ -16,25 +12,15 @@ env/
 .env*
 !.env.example
 
-# AWS and testing files
-.coverage
-check_aws.py
-check_bucket.py
-debug_aws.py
-list_buckets.py
-verify_creds.py
-update_env.py
-test_s3.py
-aws-architecture.puml
-test_flights.json
-
-# IDE files
+# IDE
 .vscode/
 .idea/
 
-# Logs
-*.log
-
 # OS
 .DS_Store
+
+# Screenshots (keep locally)
 screenshots/*.png
+
+# Logs
+*.log
