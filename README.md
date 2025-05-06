@@ -187,3 +187,33 @@ All AWS S3 interactions are mocked in tests to prevent actual AWS calls.
 
 - Configure proper AWS credentials for production use
 - The database is automatically initialized when the containers start
+
+## AWS Security Configuration
+
+### EC2 Security Group
+- Inbound Rules:
+  - Port 8000: API access
+  - Source: 0.0.0.0/0 (for demonstration, restrict in production)
+- Outbound Rules:
+  - Port 5432: to RDS Security Group
+  - Port 443: to S3
+
+### RDS Security Group
+- Inbound Rules:
+  - Port 5432: from EC2 Security Group only
+- Security Features:
+  - No public IP
+  - No public access
+  - Located in private subnet
+
+### S3 Configuration
+- Bucket Policy:
+  - Private access only
+  - Access through EC2 IAM role
+  - No public access
+
+### Network Security
+- VPC Configuration:
+  - EC2 in public subnet (with internet access)
+  - RDS in private subnet (no internet access)
+  - Proper route tables and NACLs

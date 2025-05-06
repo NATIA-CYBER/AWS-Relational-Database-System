@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     DB_NAME: str = 'aircraft_db'
     
     def clean_env_value(value):
-        """Clean environment variable value by removing quotes and encoding special characters."""
+        # Clean environment variable value by removing quotes and encoding special characters
         if not value:
             return value
         

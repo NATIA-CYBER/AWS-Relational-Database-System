@@ -45,7 +45,7 @@ def get_s3_client():
 
 @app.get("/aircraft/{icao}/stats")
 def get_aircraft_stats(icao: str, db: Session = Depends(get_db)) -> Dict:
-    """Get statistics for a specific aircraft by ICAO code."""
+    # Get statistics for a specific aircraft by ICAO code
     stmt = select(
         AircraftStats.icao,
         AircraftStats.total_flights,
@@ -73,7 +73,7 @@ def process_s3_data(
 ) -> Dict:
     logger.info(f"Using bucket: {settings.S3_BUCKET}")
     logger.info(f"Using region: {settings.AWS_REGION}")
-    """Process aircraft data from S3 and store statistics in PostgreSQL."""
+    # Process aircraft data from S3 and store statistics in PostgreSQL
     try:
         response = s3.list_objects_v2(Bucket=settings.S3_BUCKET)
         if 'Contents' not in response:

@@ -30,7 +30,7 @@ with patch('bdi_api.settings.settings', test_settings):
 
 @pytest.fixture
 def test_db():
-    """Test database fixture."""
+    # Test database fixture
     engine = create_engine(
         f"postgresql://{test_settings.DB_USER}:{test_settings.DB_PASSWORD}@{test_settings.DB_HOST}:{test_settings.DB_PORT}/{test_settings.DB_NAME}"
     )
@@ -45,7 +45,7 @@ def test_db():
 
 @pytest.fixture
 def mock_s3():
-    """S3 mock fixture."""
+    # S3 mock fixture
     mock_s3 = MagicMock()
     mock_s3.list_objects_v2.return_value = {
         'Contents': [
