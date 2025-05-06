@@ -37,3 +37,4 @@ test_flights.json
 
 # OS
 .DS_Store
+screenshots/*.png
